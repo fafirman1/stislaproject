@@ -53,6 +53,18 @@
                         </div>
                     @enderror
 
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input id="phone" type="text" class="form-control @error('phone')
+                        is-invalid
+                        @enderror" name="phone" autofocus>
+                    </div>
+                    @error('phone')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+
                     <!-- password -->
                     <div class="form-group">
                         <label for="password" class="d-block">Password</label>
