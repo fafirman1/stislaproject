@@ -21,7 +21,7 @@ return new class extends Migration
             //stock
             $table->integer('stock')->default(0);
             //category enum (fresh, sweet)
-            $table->enum('category', ['fresh', 'sweet']);
+            $table->enum('category', ['Fresh', 'Sweet']);
             $table->string('image')->nullable();
             $table->timestamps();
         });

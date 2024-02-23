@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Products')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,15 +12,15 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Users</h1>
+                <h1>Products</h1>
                 <div class="section-header-button">
-                    <a href="{{route('user.create')}}"
+                    <a href="{{route('product.create')}}"
                         class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">User</a></div>
-                    <div class="breadcrumb-item">All User</div>
+                    <div class="breadcrumb-item"><a href="#">Products</a></div>
+                    <div class="breadcrumb-item">All Products</div>
                 </div>
             </div>
             <div class="section-body">
@@ -29,9 +29,9 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">User</h2>
+                <h2 class="section-title">Products</h2>
                 <p class="section-lead">
-                    You can manage all Users, such as editing, deleting and more.
+                    You can manage all Products, such as editing, deleting and more.
                 </p>
 
 
@@ -39,11 +39,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All User</h4>
+                                <h4>All Products</h4>
                             </div>
                             <div class="card-body">
                                 <div class="float-right">
-                                    <form method="GET" action="{{route('user.index')}}">
+                                    <form method="GET" action="{{route('product.index')}}">
                                         <div class="input-group">
                                             <input type="text"
                                                 class="form-control"
@@ -63,40 +63,42 @@
                                         <tr>
 
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Roles</th>
+                                            <th>Category</th>
+                                            <th>Stock</th>
+                                            <th>Price</th>
                                             <th>Action</th>
                                         </tr>
-                                        @foreach ($users as $user)
+                                        @foreach ($products as $product)
                                         <tr>
 
                                             <td>
-                                                {{$user->name}}
+                                                {{$product->name}}
                                             </td>
                                             <td>
-                                                {{$user->email}}
+                                                {{$product->category}}
                                             </td>
                                             <td>
-                                                {{$user->phone}}
+                                                {{$product->stock}}
                                             </td>
                                             <td>
-                                                {{$user->roles}}
+                                                Rp. {{ number_format($product->price, 0, ',', '.') }}
                                             </td>
+
                                             <td>
                                                 <div class="d-flex justify-content-center">
-                                                    <a href='{{route('user.edit', $user->id)}}'
+                                                    <a href='{{route('product.edit', $product->id)}}'
                                                         class="btn btn-sm btn-info btn-icon">
                                                         <i class="fas fa-edit"></i>
                                                         Edit
                                                     </a>
 
-                                                    <form action="{{route('user.destroy', $user->id)}}" method="POST"
+                                                    <form action="{{route('product.destroy', $product->id)}}" method="POST"
                                                         class="ml-2">
                                                         <input type="hidden" name="_method" value="DELETE"/>
                                                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                                         <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                            <i class="fas fa-times"></i>Delete
+                                                            <i class="fas fa-times"></i>
+                                                            Delete
                                                         </button>
                                                     </form>
 
@@ -109,7 +111,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{$users->withQueryString()->links()}}
+                                    {{$products->withQueryString()->links()}}
                                 </div>
                             </div>
                         </div>
