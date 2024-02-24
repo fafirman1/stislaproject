@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{route('product.store')}}" method="POST">
+                        <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Name</label>
@@ -82,6 +82,19 @@
                                         <input type="radio" name="category" value="Sweet" class="selectgroup-input">
                                         <span class="selectgroup-button">Sweet</span>
                                     </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Upload Photo Product</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control" name="image"
+                                        @error('image') is-invalid @enderror>
+                                        @error('image')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
                                 </div>
                             </div>
 
