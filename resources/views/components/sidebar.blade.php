@@ -7,6 +7,7 @@
             <a href="index.html">MWP</a>
         </div>
         <ul class="sidebar-menu">
+            <div class="dropdown-divider"></div>
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown">
                 <a href="#"
@@ -31,14 +32,41 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a href="#"
-                    class="nav-link has-dropdown"><i class="fab fa-uncharted"></i><span>Products</span></a>
+                <a href="#" class="nav-link has-dropdown">
+                    <i class="fab fa-uncharted"></i>
+                    <span>Products</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link"
-                            href="{{ route('product.index') }}">All Products</a>
+                        <a class="nav-link" href="{{ route('product.index') }}">All Products</a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown">
+                    <i class="fab fa-opencart"></i>
+                    <span>Penjualan</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="#">Data Transaksi</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Laporan Penjualan</a>
+                    </li>
+                </ul>
+            </li>
+
+            <div class="dropdown-divider"></div>
+            <li class="menu-header">Action</li>
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link text-danger" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span></a>
+                    <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">
+                        @csrf
+                        </form>
             </li>
         </ul>
     </aside>

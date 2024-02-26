@@ -95,7 +95,7 @@
                                                         class="ml-2">
                                                         <input type="hidden" name="_method" value="DELETE"/>
                                                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                                        <button class="btn btn-sm btn-danger btn-icon confirm-delete">
+                                                        <button class="btn btn-sm btn-danger btn-icon confirm-delete" id="swall-6">
                                                             <i class="fas fa-times"></i>Delete
                                                         </button>
                                                     </form>
