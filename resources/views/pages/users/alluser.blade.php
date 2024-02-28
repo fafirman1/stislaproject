@@ -40,6 +40,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>All User</h4>
+                                <span class="total-users">(Total Users: {{ $users->total() }})</span>
                             </div>
                             <div class="card-body">
                                 <div class="float-right">
