@@ -29,31 +29,31 @@
                                         href="#"
                                         id="orders-month">August</a>
                                     <ul class="dropdown-menu dropdown-menu-sm">
-                                        <li class="dropdown-title">Select Month</li>
+                                        <li class="dropdown-title">Pilih Bulan</li>
                                         <li><a href="#"
-                                                class="dropdown-item">January</a></li>
+                                                class="dropdown-item">Januari</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item">February</a></li>
+                                                class="dropdown-item">Februari</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item">March</a></li>
+                                                class="dropdown-item">Maret</a></li>
                                         <li><a href="#"
                                                 class="dropdown-item">April</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item">May</a></li>
+                                                class="dropdown-item">Mei</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item">June</a></li>
+                                                class="dropdown-item">Juni</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item">July</a></li>
+                                                class="dropdown-item">Juli</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item active">August</a></li>
+                                                class="dropdown-item active">Agustus</a></li>
                                         <li><a href="#"
                                                 class="dropdown-item">September</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item">October</a></li>
+                                                class="dropdown-item">Oktober</a></li>
                                         <li><a href="#"
                                                 class="dropdown-item">November</a></li>
                                         <li><a href="#"
-                                                class="dropdown-item">December</a></li>
+                                                class="dropdown-item">Desember</a></li>
                                     </ul>
                                 </div>
                             </div>
