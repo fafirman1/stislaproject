@@ -109,10 +109,10 @@
                             <div class="table-responsive table-invoice">
                                 <table class="table-striped table">
                                     <tr>
-                                        <th>Invoice ID</th>
-                                        <th>Customer</th>
-                                        <th>Status</th>
-                                        <th>Due Date</th>
+                                        <th>Tanggal</th>
+                                        <th>Nomor Nota</th>
+                                        <th>Produk</th>
+                                        <th>Kasir</th>
                                         <th>Action</th>
                                     </tr>
                                     <tr>
