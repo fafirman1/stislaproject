@@ -102,7 +102,7 @@
                             <h4>Nota Penjualan</h4>
                             <div class="card-header-action">
                                 <a href="#"
-                                    class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
+                                    class="btn btn-danger">Lihat <i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
                         <div class="card-body p-0">
