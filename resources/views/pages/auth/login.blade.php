@@ -66,7 +66,7 @@
                     </div>
                     @enderror
                 </div>
-            <!--
+
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox"
@@ -78,7 +78,7 @@
                             for="remember-me">Remember Me</label>
                     </div>
                 </div>
-            -->
+            
                 <div class="form-group">
                     <button type="submit"
                         class="btn btn-primary btn-lg btn-block"
