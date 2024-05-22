@@ -35,7 +35,7 @@ class ProductController extends Controller
         ]);
 
         $filename = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/products', $filename);
+        $request->image->storeAs('storage/products', $filename);
         $product = \App\Models\Product::create([
             'name'=>$request->name,
             'price'=>(int) $request->price,
