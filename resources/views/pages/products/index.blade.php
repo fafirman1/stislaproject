@@ -76,7 +76,6 @@
                                                     width="100px" class="img-thumbnail">
                                                     @else
                                                     <span class="badge badge-danger">No image</span>
-
                                                 @endif
                                             </td>
                                             <td>
