@@ -15,11 +15,10 @@
         </div>
 
         <div class="card-body">
-            <form method="POST"
-                action="{{route('login')}}"
-                class="needs-validation"
-                novalidate="">
+            <form method="POST" action="{{route('login')}}" class="needs-validation" novalidate="">
                 @csrf
+
+                {{-- email --}}
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email"
@@ -38,6 +37,7 @@
                     @enderror
                 </div>
 
+                {{-- Password --}}
                 <div class="form-group">
                     <div class="d-block">
                         <label for="password"
@@ -67,7 +67,39 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
+                {{-- Roles --}}
+                {{-- <div class="form-group">
+                    <label for="roles">Roles</label>
+                    <input id="roles"
+                        type="text"
+                        class="form-control
+                        @error('roles')
+                        is-invalid
+                        @enderror"
+                        name="roles"
+                        tabindex="3"
+                        autofocus>
+                    @error ('roles')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                    @enderror
+                </div> --}}
+
+                {{-- <div class="form-group">
+                    <label for="roles">Roles</label>
+                    <select id="roles" class="form-control @error('roles') is-invalid @enderror" name="roles" tabindex="3">
+                        <option value="ADMIN">Admin</option>
+                        <option value="KASIR">Kasir</option>
+                        <!-- Add other role options here -->
+                    </select>
+                    @error('roles')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div> --}}
+
+
+                {{-- <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox"
                             name="remember"
@@ -77,8 +109,10 @@
                         <label class="custom-control-label"
                             for="remember-me">Remember Me</label>
                     </div>
-                </div>
-            
+                </div> --}}
+
+                {{-- Button --}}
+
                 <div class="form-group">
                     <button type="submit"
                         class="btn btn-primary btn-lg btn-block"

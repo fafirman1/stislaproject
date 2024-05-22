@@ -1,3 +1,3 @@
   <div class="simple-footer">
-      Copyright &copy; Stisla 2018
+      Copyright &copy; Laravel - Stisla 2018 | Editor <a href="#">Fajar Firmansyah</a>
   </div>

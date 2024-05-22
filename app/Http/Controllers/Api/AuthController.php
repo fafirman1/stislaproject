@@ -61,13 +61,13 @@ class AuthController extends Controller
 
         if (!$user){
             return response([
-                'message'=>['Email not found'],
+                'Email not found',
             ], 404);
         }
 
         if(!Hash::check($request->password, $user->password)){
             return response([
-                'message'=>['Password not match'],
+                'Password does not match',
             ], 404);
         }
 
