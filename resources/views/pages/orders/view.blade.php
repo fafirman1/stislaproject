@@ -1,26 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title', 'Detail Penjualan')
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/selectric/public/selectric.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
 @endpush
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Products</h1>
-                <div class="section-header-button">
-                    <a href="{{route('product.create')}}"
-                        class="btn btn-primary">Add New</a>
-                </div>
+                <h1>Detail Penjualan</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Products</a></div>
-                    <div class="breadcrumb-item">All Products</div>
+                    <div class="breadcrumb-item"><a href="#">Penjualan</a></div>
+                    <div class="breadcrumb-item">Detail Transaksi</div>
                 </div>
             </div>
             <div class="section-body">
@@ -29,96 +24,42 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Products</h2>
+                <h2 class="section-title">Detail Transaksi</h2>
                 <p class="section-lead">
-                    You can manage all Products, such as editing, deleting and more.
+                    <div>Total Harga : Rp. {{ number_format($order->total_price, 0, ',', '.') }}</div>
+                    <div>Waktu Transaksi : {{ $order->transaction_time }} </div>
+                    <div>Total Item : {{ $order->total_item }} </div>
                 </p>
-
 
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Products</h4>
+                                <h4>Semua Produk</h4>
                             </div>
                             <div class="card-body">
-                                <div class="float-right">
-                                    <form method="GET" action="{{route('product.index')}}">
-                                        <div class="input-group">
-                                            <input type="text"
-                                                class="form-control"
-                                                placeholder="Search"
-                                                name="name">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
                                 <div class="clearfix mb-3"></div>
-
                                 <div class="table-responsive">
-                                    <table class="table-striped table">
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Stock</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        @foreach ($products as $product)
-                                        <tr>
-                                            <td>
-                                                @if ($product->image)
-                                                <img src="{{asset('storage/products/'.$product->image)}}" alt=""
-                                                    width="100px" class="img-thumbnail">
-                                                    @else
-                                                    <span class="badge badge-danger">No image</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                {{$product->name}}
-                                            </td>
-                                            <td>
-                                                {{$product->category}}
-                                            </td>
-                                            <td>
-                                                {{$product->stock}}
-                                            </td>
-                                            <td>
-                                                Rp. {{ number_format($product->price, 0, ',', '.') }}
-                                            </td>
-
-                                            <td>
-                                                <div class="d-flex justify-content-center">
-                                                    <a href='{{route('product.edit', $product->id)}}'
-                                                        class="btn btn-sm btn-info btn-icon">
-                                                        <i class="fas fa-edit"></i>
-                                                        Edit
-                                                    </a>
-
-                                                    <form action="{{route('product.destroy', $product->id)}}" method="POST"
-                                                        class="ml-2">
-                                                        <input type="hidden" name="_method" value="DELETE"/>
-                                                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                                        <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                            <i class="fas fa-times"></i>
-                                                            Delete
-                                                        </button>
-                                                    </form>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
-
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Produk</th>
+                                                <th>Harga</th>
+                                                <th>Jumlah</th>
+                                                <th>Total Harga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($orderItems as $item)
+                                            <tr>
+                                                <td>{{ $item->product->name }}</td>
+                                                <td>Rp. {{ number_format($item->product->price, 0, ',', '.') }}</td>
+                                                <td>{{ $item->quantity }}</td>
+                                                <td>Rp. {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
                                     </table>
-                                </div>
-                                <div class="float-right">
-                                    {{$products->withQueryString()->links()}}
                                 </div>
                             </div>
                         </div>
@@ -130,7 +71,7 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
+    <!-- JS Libraries -->
     <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
 
     <!-- Page Specific JS File -->

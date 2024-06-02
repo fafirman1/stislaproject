@@ -64,22 +64,20 @@
                                             <th>Tanggal Transaksi</th>
                                             <th>Total</th>
                                             <th>Total Item</th>
-                                            <th>Id Kasir</th>
                                             <th>Kasir</th>
                                         </tr>
                                         @foreach ($orders as $order)
                                         <tr>
                                             <td>
-                                                {{$order->transaction_time}}
+                                                <a href="{{route('order.show', $order->id)}}">
+                                                    {{$order->transaction_time}}
+                                                </a>
                                             </td>
                                             <td>
                                                 Rp. {{ number_format($order->total_price, 0, ',', '.') }}
                                             </td>
                                             <td>
                                                 {{$order->total_item}}
-                                            </td>
-                                            <td>
-                                                {{$order->kasir_id}}
                                             </td>
                                             <td>
                                                 @isset($order->kasir)
