@@ -48,10 +48,7 @@
                     <span>Penjualan</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="#">Data Transaksi</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Laporan Penjualan</a>
+                        <a class="nav-link" href="{{ route('order.index')}}">Data Transaksi</a>
                     </li>
                 </ul>
             </li>
