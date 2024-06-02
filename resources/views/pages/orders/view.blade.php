@@ -52,6 +52,14 @@
                                         <tbody>
                                             @foreach ($orderItems as $item)
                                             <tr>
+                                                {{-- <td>
+                                                    @if ($product->image)
+                                                    <img src="{{asset('storage/products/'.$product->image)}}" alt=""
+                                                    width="100px" class="img-thumbnail">
+                                                    @else
+                                                    <span class="badge badge-danger">No image</span>
+                                                @endif
+                                                </td> --}}
                                                 <td>{{ $item->product->name }}</td>
                                                 <td>Rp. {{ number_format($item->product->price, 0, ',', '.') }}</td>
                                                 <td>{{ $item->quantity }}</td>
