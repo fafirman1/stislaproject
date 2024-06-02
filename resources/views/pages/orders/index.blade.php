@@ -78,7 +78,7 @@
                                                 {{$order->total_item}}
                                             </td>
                                             <td>
-                                                {{$order->kasir->nama }}
+                                                {{$order->kasir->name }}
                                             </td>
                                         </tr>
                                         @endforeach
