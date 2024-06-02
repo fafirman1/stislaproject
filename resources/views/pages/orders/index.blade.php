@@ -64,6 +64,7 @@
                                             <th>Tanggal Transaksi</th>
                                             <th>Total</th>
                                             <th>Total Item</th>
+                                            <th>Id Kasir</th>
                                             <th>Kasir</th>
                                         </tr>
                                         @foreach ($orders as $order)
@@ -76,6 +77,9 @@
                                             </td>
                                             <td>
                                                 {{$order->total_item}}
+                                            </td>
+                                            <td>
+                                                {{$order->kasir_id}}
                                             </td>
                                             <td>
                                                 @isset($order->kasir)
