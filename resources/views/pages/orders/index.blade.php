@@ -78,7 +78,11 @@
                                                 {{$order->total_item}}
                                             </td>
                                             <td>
-                                                {{$order->kasir->name }}
+                                                @isset($order->kasir)
+                                                        {{ $order->kasir->name }}
+                                                    @else
+                                                        Kasir tidak ditemukan
+                                                    @endisset
                                             </td>
                                         </tr>
                                         @endforeach
