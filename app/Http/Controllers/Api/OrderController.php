@@ -25,7 +25,8 @@ class OrderController extends Controller
             'transaction_time' => $request->transaction_time,
             'kasir_id' => $request->kasir_id,
             'total_price' => $request->total_price,
-            'total_item' => $request->total_item
+            'total_item' => $request->total_item,
+            'payment_method'=> $request->payment_method
         ]);
 
         foreach ($request->order_items as $item){
