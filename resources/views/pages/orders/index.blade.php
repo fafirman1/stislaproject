@@ -40,21 +40,36 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Data Transaksi</h4>
+
                             </div>
                             <div class="card-body">
-                                {{-- <div class="float-right">
-                                    <form method="GET" action="{{route('product.index')}}">
-                                        <div class="input-group">
-                                            <input type="text"
-                                                class="form-control"
-                                                placeholder="Search"
-                                                name="name">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                            </div>
+                                <div class="float-left">
+                                    <form method="GET" action="{{ route('penjualan.index') }}" class="form-inline">
+                                        <div class="form-group mr-2">
+                                            <label for="month" class="mr-2">Pilih Bulan </label>
+                                            <select name="month" id="month" class="form-control selectric">
+                                                @foreach (range(1, 12) as $month)
+                                                    <option value="{{ $month }}" {{ request('month') == $month ? 'selected' : '' }}>
+                                                        {{ DateTime::createFromFormat('!m', $month)->format('F') }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
+                                        <div class="form-group mr-2">
+                                            <label for="year" class="mr-2">Pilih Tahun </label>
+                                            <select name="year" id="year" class="form-control selectric">
+                                                @foreach (range(2020, date('Y')) as $year)  <!-- Adjust the start year as needed -->
+                                                    <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
+                                                        {{ $year }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Tampilkan</button>
+
+
                                     </form>
-                                </div> --}}
+                                </div>
 
                                 <div class="clearfix mb-3"></div>
 
@@ -88,10 +103,9 @@
                                             </td>
                                         </tr>
                                         @endforeach
-
-
                                     </table>
                                 </div>
+                                <a href="{{ route('orders.printPDF') }}" class="btn btn-primary">Cetak PDF</a>
                                 <div class="float-right">
                                     {{$orders->withQueryString()->links()}}
                                 </div>
@@ -110,4 +124,5 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/features-posts.js') }}"></script>
+
 @endpush

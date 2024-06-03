@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Di sini Anda dapat mendaftarkan rute web untuk aplikasi Anda.
+| Rute-rute ini dimuat oleh RouteServiceProvider dan semuanya akan
+| ditugaskan ke grup middleware "web". Buatlah sesuatu yang hebat!
 |
 */
 
@@ -25,8 +25,10 @@ Route::middleware(['auth'])->group(function(){
     }) ->name('home');
 
     Route::resource('user', UserController::class);
-    Route::resource('product',\App\Http\Controllers\ProductController::class);
+    Route::resource('product', \App\Http\Controllers\ProductController::class);
     Route::resource('order', OrderController::class);
+    Route::get('/penjualan', [OrderController::class, 'index'])->name('penjualan.index');
+    Route::get('/orders/print-pdf', [OrderController::class, 'printPDF'])->name('orders.printPDF');
 });
 
 /*
@@ -34,5 +36,3 @@ Route::get('/register', function () {
     return view('pages.auth.auth-register');
 });
 */
-
-
