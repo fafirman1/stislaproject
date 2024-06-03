@@ -24,6 +24,10 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
+        tfoot {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +42,13 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $total_penjualan = 0;
+            @endphp
             @foreach ($orders as $order)
+                @php
+                    $total_penjualan += $order->total_price;
+                @endphp
                 <tr>
                     <td>{{ $order->transaction_time }}</td>
                     <td>Rp. {{ number_format($order->total_price, 0, ',', '.') }}</td>
@@ -53,6 +63,12 @@
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" style="text-align: right;">Total Penjualan:</td>
+                <td>Rp. {{ number_format($total_penjualan, 0, ',', '.') }}</td>
+            </tr>
+        </tfoot>
     </table>
 </body>
 </html>

@@ -15,7 +15,7 @@
                 <ul class="dropdown-menu">
                     <li class='{{ Request::is('home') ? 'active' : '' }}'>
                         <a class="nav-link"
-                            href="{{ route('home') }}">Dashboard</a>
+                            href="{{ route('order.index') }}">Dashboard</a>
                     </li>
                 </ul>
             </li>

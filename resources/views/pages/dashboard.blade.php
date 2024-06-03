@@ -23,39 +23,29 @@
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card-stats-title">Statistik
-                                <div class="dropdown d-inline">
-                                    <a class="font-weight-600 dropdown-toggle"
-                                        data-toggle="dropdown"
-                                        href="#"
-                                        id="orders-month">August</a>
-                                    <ul class="dropdown-menu dropdown-menu-sm">
-                                        <li class="dropdown-title">Pilih Bulan</li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Januari</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Februari</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Maret</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">April</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Mei</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Juni</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Juli</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item active">Agustus</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">September</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Oktober</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">November</a></li>
-                                        <li><a href="#"
-                                                class="dropdown-item">Desember</a></li>
-                                    </ul>
-                                </div>
+                                <form method="GET" action="{{ route('penjualan.index') }}" class="form-inline">
+                                    <div class="form-group mr-2">
+                                        <label for="month" class="mr-2">Pilih Bulan </label>
+                                        <select name="month" id="month" class="form-control selectric">
+                                            @foreach (range(1, 12) as $month)
+                                                <option value="{{ $month }}" {{ request('month') == $month ? 'selected' : '' }}>
+                                                    {{ DateTime::createFromFormat('!m', $month)->format('F') }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group mr-2">
+                                        <label for="year" class="mr-2">Pilih Tahun </label>
+                                        <select name="year" id="year" class="form-control selectric">
+                                            @foreach (range(2020, date('Y')) as $year)  <!-- Adjust the start year as needed -->
+                                                <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
+                                                    {{ $year }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Tampilkan</button>
+                                </form>
                             </div>
                         </div>
                         <div class="table-responsive">

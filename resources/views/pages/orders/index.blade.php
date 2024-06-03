@@ -81,7 +81,13 @@
                                             <th>Total Item</th>
                                             <th>Kasir</th>
                                         </tr>
+                                        @php
+                                            $total_penjualan = 0;
+                                        @endphp
                                         @foreach ($orders as $order)
+                                        @php
+                                            $total_penjualan += $order->total_price;
+                                        @endphp
                                         <tr>
                                             <td>
                                                 <a href="{{route('order.show', $order->id)}}">
@@ -105,6 +111,9 @@
                                         @endforeach
                                     </table>
                                 </div>
+                                <br>
+                                <h6>Total Penjualan: Rp. {{ number_format($total_penjualan, 0, ',', '.') }}</h6>
+                                <br>
                                 <a href="{{ route('orders.printPDF') }}" class="btn btn-primary">Cetak PDF</a>
                                 <div class="float-right">
                                     {{$orders->withQueryString()->links()}}
