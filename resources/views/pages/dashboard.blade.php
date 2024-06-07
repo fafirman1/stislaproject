@@ -66,7 +66,7 @@
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3"> <!-- Adjust columns for better responsiveness -->
                         <div class="product-card">
                             <div class="product-image-container">
-                                <img src="{{ asset('storage/' . $product->image) }}" class="product-image" alt="{{ $product->name }}">
+                                <img src="{{ asset('storage/products/' . $product->image) }}" class="product-image" alt="{{ $product->name }}">
                             </div>
                             <div class="product-name">{{ $product->name }}</div>
                             <div class="product-price">Rp. {{ number_format($product->price, 0, ',', '.') }}</div>
