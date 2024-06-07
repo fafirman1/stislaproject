@@ -55,26 +55,21 @@ class AuthController extends Controller
         $loginData=$request->validate([
             'email'=>'required|email',
             'password'=>'required',
+            'roles' => 'required'
         ]);
 
         $user = \App\Models\User::where('email', $request->email)->first();
 
         if (!$user){
-            return response([
-                'Email not found',
-            ], 404);
+            return response('Email not found', 404);
         }
 
         if(!Hash::check($request->password, $user->password)){
-            return response([
-                'Password does not match',
-            ], 404);
+            return response('Password does not match', 404);
         }
 
         if ($user->roles !== $request->roles || $user->roles !== 'KASIR') {
-            return response([
-                'message' => 'Access denied for this role.',
-            ], 403);
+            return response('Access denied for this role.', 403);
         }
 
         $token=$user->createToken('auth_token')->plainTextToken;
@@ -89,9 +84,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return response()->json([
-            'message'=>'Logout Success',
-        ]);
+        return response('Logout Success', 200);
     }
 
 }
