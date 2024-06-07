@@ -68,48 +68,18 @@
                 </div>
 
                 {{-- Roles --}}
-                {{-- <div class="form-group">
-                    <label for="roles">Roles</label>
-                    <input id="roles"
-                        type="text"
-                        class="form-control
-                        @error('roles')
-                        is-invalid
-                        @enderror"
-                        name="roles"
-                        tabindex="3"
-                        autofocus>
-                    @error ('roles')
-                    <div class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                    @enderror
-                </div> --}}
-
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label for="roles">Roles</label>
                     <select id="roles" class="form-control @error('roles') is-invalid @enderror" name="roles" tabindex="3">
                         <option value="ADMIN">Admin</option>
-                        <option value="KASIR">Kasir</option>
-                        <!-- Add other role options here -->
+                        <!-- Add other role options here if needed -->
                     </select>
                     @error('roles')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div> --}}
-
-
-                {{-- <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox"
-                            name="remember"
-                            class="custom-control-input"
-                            tabindex="3"
-                            id="remember-me">
-                        <label class="custom-control-label"
-                            for="remember-me">Remember Me</label>
+                    <div class="invalid-feedback">
+                        {{ $message }}
                     </div>
-                </div> --}}
+                    @enderror
+                </div>
 
                 {{-- Button --}}
 
@@ -121,23 +91,6 @@
                     </button>
                 </div>
             </form>
-        <!--
-            <div class="mt-4 mb-3 text-center">
-                <div class="text-job text-muted">Login With Social</div>
-            </div>
-            <div class="row sm-gutters">
-                <div class="col-6">
-                    <a class="btn btn-block btn-social btn-facebook">
-                        <span class="fab fa-facebook"></span> Facebook
-                    </a>
-                </div>
-                <div class="col-6">
-                    <a class="btn btn-block btn-social btn-twitter">
-                        <span class="fab fa-twitter"></span> Twitter
-                    </a>
-                </div>
-            </div>
-        -->
 
         </div>
     </div>

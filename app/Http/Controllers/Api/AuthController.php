@@ -71,6 +71,12 @@ class AuthController extends Controller
             ], 404);
         }
 
+        if ($user->roles !== $request->roles || $user->roles !== 'KASIR') {
+            return response([
+                'message' => 'Access denied for this role.',
+            ], 403);
+        }
+
         $token=$user->createToken('auth_token')->plainTextToken;
 
         return response([

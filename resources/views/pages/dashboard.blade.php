@@ -18,7 +18,7 @@
                     <td><h1>Dashboard</h1></td>
                 </tr>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </section>
     </div>
 @endsection
