@@ -69,9 +69,9 @@
                                 <img src="{{ asset('storage/' . $product->image) }}" class="product-image" alt="{{ $product->name }}">
                             </div>
                             <div class="product-name">{{ $product->name }}</div>
-                            <div class="product-price">${{ number_format($product->price, 2) }}</div>
+                            <div class="product-price">Rp. {{ number_format($product->price, 0, ',', '.') }}</div>
                             <div class="product-stock">Stock: {{ $product->stock }}</div>
-                            <div class="product-category">{{ $product->category->name }}</div>
+                            <div class="product-category">{{ $product->category }}</div>
                         </div>
                     </div>
                 @endforeach
