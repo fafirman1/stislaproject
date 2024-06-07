@@ -43,14 +43,6 @@
                         <label for="password"
                             class="control-label">Password
                         </label>
-                    <!--
-                        <div class="float-right">
-                            <a href="auth-forgot-password.html"
-                                class="text-small">
-                                Forgot Password?
-                            </a>
-                        </div>
-                    -->
                     </div>
                     <input id="password"
                         type="password"
@@ -67,22 +59,7 @@
                     @enderror
                 </div>
 
-                {{-- Roles --}}
-                <div class="form-group">
-                    <label for="roles">Roles</label>
-                    <select id="roles" class="form-control @error('roles') is-invalid @enderror" name="roles" tabindex="3">
-                        <option value="ADMIN">Admin</option>
-                        <!-- Add other role options here if needed -->
-                    </select>
-                    @error('roles')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
                 {{-- Button --}}
-
                 <div class="form-group">
                     <button type="submit"
                         class="btn btn-primary btn-lg btn-block"
@@ -94,11 +71,7 @@
 
         </div>
     </div>
-<!--
-    <div class="text-muted mt-5 text-center">
-        Don't have an account? <a href="{{route('register')}}">Create One</a>
-    </div>
--->
+
 @endsection
 
 @push('scripts')

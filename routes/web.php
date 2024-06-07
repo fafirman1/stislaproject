@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('order', OrderController::class);
     Route::get('/penjualan', [OrderController::class, 'index'])->name('penjualan.index');
     Route::get('/orders/print-pdf', [OrderController::class, 'printPDF'])->name('orders.printPDF');
+    Route::get('home', [AdminController::class, 'index'])->name('home');
 });
 
 /*
