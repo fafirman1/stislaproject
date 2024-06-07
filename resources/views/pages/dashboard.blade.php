@@ -13,15 +13,28 @@
             border-radius: 5px;
             padding: 15px;
             margin: 15px;
+            background-color: #fff; /* White background */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+        .product-image-container {
+            width: 100%;
+            height: 200px; /* Set a fixed height for all images */
+            margin-bottom: 15px;
+            overflow: hidden; /* Ensure the image doesn't overflow the container */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .product-image {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the container without stretching */
         }
         .product-name {
             font-size: 1.2em;
             margin: 10px 0;
+            font-weight: bold; /* Make the product name bold */
         }
         .product-price {
             color: #28a745;
@@ -39,6 +52,7 @@
     </style>
 @endpush
 
+
 @section('main')
     <div class="main-content">
         <section class="section">
@@ -49,13 +63,15 @@
         <section class="section">
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="col-12 col-sm-6 col-md-4">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3"> <!-- Adjust columns for better responsiveness -->
                         <div class="product-card">
-                            <img src="{{ asset('storage/products/' . $product->image) }}" class="product-image" alt="{{ $product->name }}">
+                            <div class="product-image-container">
+                                <img src="{{ asset('storage/' . $product->image) }}" class="product-image" alt="{{ $product->name }}">
+                            </div>
                             <div class="product-name">{{ $product->name }}</div>
-                            <div class="product-price">Rp. {{ number_format($product->price, 0, ',', '.') }}</div>
+                            <div class="product-price">${{ number_format($product->price, 2) }}</div>
                             <div class="product-stock">Stock: {{ $product->stock }}</div>
-                            <div class="product-category">{{ $product->category }}</div>
+                            <div class="product-category">{{ $product->category->name }}</div>
                         </div>
                     </div>
                 @endforeach
