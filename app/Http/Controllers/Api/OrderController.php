@@ -49,6 +49,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log; // Tambahkan ini
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -68,35 +70,75 @@ class OrderController extends Controller
             'order_items.*.total_price' => 'required|numeric',
         ]);
 
-        $order = Order::create([
-            'transaction_time' => $request->transaction_time,
-            'kasir_id' => $request->kasir_id,
-            'total_price' => $request->total_price,
-            'total_item' => $request->total_item,
-            'payment_method'=> $request->payment_method,
-        ]);
+        // Use a transaction to ensure data integrity
+        DB::beginTransaction();
 
-        foreach ($request->order_items as $item) {
-            // Create order item
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item['product_id'],
-                'quantity' => $item['quantity'],
-                'total_price' => $item['total_price'],
+        try {
+            $order = Order::create([
+                'transaction_time' => $request->transaction_time,
+                'kasir_id' => $request->kasir_id,
+                'total_price' => $request->total_price,
+                'total_item' => $request->total_item,
+                'payment_method' => $request->payment_method,
             ]);
 
-            // Update stock of the product
-            $product = Product::find($item['product_id']);
-            if ($product) {
-                $product->stock -= $item['quantity'];
-                $product->save();
-            }
-        }
+            foreach ($request->order_items as $item) {
+                // Create order item
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'total_price' => $item['total_price'],
+                ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Order Created',
-        ], 201);
+                // Update stock of the product
+                $product = Product::find($item['product_id']);
+                if ($product) {
+                    // Debugging output
+                    Log::info("Current stock of product ID {$product->id}: {$product->stock}");
+                    Log::info("Order quantity: {$item['quantity']}");
+
+                    if ($product->stock >= $item['quantity']) {
+                        $product->stock -= $item['quantity'];
+                        $product->save();
+
+                        // Debugging output
+                        Log::info("New stock of product ID {$product->id}: {$product->stock}");
+                    } else {
+                        // Rollback transaction if stock is insufficient
+                        DB::rollBack();
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Insufficient stock for product ID ' . $product->id,
+                        ], 400);
+                    }
+                } else {
+                    // Rollback transaction if product not found
+                    DB::rollBack();
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Product not found with ID ' . $item['product_id'],
+                    ], 404);
+                }
+            }
+
+            // Commit transaction
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Order Created',
+            ], 201);
+        } catch (\Exception $e) {
+            // Rollback transaction on error
+            DB::rollBack();
+            Log::error("Order creation failed: " . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Order creation failed',
+            ], 500);
+        }
     }
 }
+
 
