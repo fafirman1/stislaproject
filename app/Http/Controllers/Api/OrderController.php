@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
@@ -36,6 +39,13 @@ class OrderController extends Controller
                 'quantity' => $item['quantity'],
                 'total_price' => $item['total_price']
             ]);
+
+            // Update stock
+            $product = Product::find($item['id']);
+            if ($product) {
+                $product->stock -= $item['quantity'];
+                $product->save();
+            }
         }
 
         return response()->json([
