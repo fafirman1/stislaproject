@@ -93,10 +93,17 @@ class ProductController extends Controller
 
         //get product
         $product = \App\Models\Product::find($request->product_id);
-
+        $currentStock = $product->stock;
+        $updateStock = $currentStock-$request->stock;
         //update stock
-        $product->stock = $request->stock;
+        $product->stock = $updateStock;
         $product->save();
+
+        //product=find(id)
+        //currentStock=product.stock
+        //updateSrock=currentStock - qty
+        //ProductStock=updatestock
+        //productsave
 
         //return response
         return response()->json([
