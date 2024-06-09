@@ -41,7 +41,7 @@ class OrderController extends Controller
             ]);
 
             // Update stock
-            $product = Product::find($item['id']);
+            $product = Product::find($item['product_id']);
             if ($product) {
                 $product->stock -= $item['quantity'];
                 $product->save();
