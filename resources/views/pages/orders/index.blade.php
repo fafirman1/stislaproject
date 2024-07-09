@@ -58,7 +58,7 @@
                                         <div class="form-group mr-2">
                                             <label for="year" class="mr-2">Pilih Tahun </label>
                                             <select name="year" id="year" class="form-control selectric">
-                                                @foreach (range(2020, date('Y')) as $year)  <!-- Adjust the start year as needed -->
+                                                @foreach (range(2020, date('Y')) as $year) <!-- Adjust the start year as needed -->
                                                     <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
                                                         {{ $year }}
                                                     </option>
@@ -66,9 +66,8 @@
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Tampilkan</button>
-
-
                                     </form>
+
                                 </div>
 
                                 <div class="clearfix mb-3"></div>
@@ -114,7 +113,11 @@
                                 <br>
                                 <h6>Total Penjualan: Rp. {{ number_format($total_penjualan, 0, ',', '.') }}</h6>
                                 <br>
-                                <a href="{{ route('orders.printPDF') }}" class="btn btn-primary">Cetak PDF</a>
+                                <a href="{{ route(
+                                    'orders.printPDF', ['month' => request('month'), 'year' => request('year')]
+                                    ) }}"
+                                    class="btn btn-primary">Cetak PDF
+                                </a>
                                 <div class="float-right">
                                     {{$orders->withQueryString()->links()}}
                                 </div>
