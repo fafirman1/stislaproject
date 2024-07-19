@@ -46,24 +46,12 @@
                                 <div class="float-left">
                                     <form method="GET" action="{{ route('penjualan.index') }}" class="form-inline">
                                         <div class="form-group mr-2">
-                                            <label for="month" class="mr-2">Pilih Bulan </label>
-                                            <select name="month" id="month" class="form-control selectric">
-                                                @foreach (range(1, 12) as $month)
-                                                    <option value="{{ $month }}" {{ request('month') == $month ? 'selected' : '' }}>
-                                                        {{ DateTime::createFromFormat('!m', $month)->format('F') }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <label for="start_date" class="mr-2">Mulai Tanggal </label>
+                                            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
                                         </div>
                                         <div class="form-group mr-2">
-                                            <label for="year" class="mr-2">Pilih Tahun </label>
-                                            <select name="year" id="year" class="form-control selectric">
-                                                @foreach (range(2020, date('Y')) as $year) <!-- Adjust the start year as needed -->
-                                                    <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
-                                                        {{ $year }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <label for="end_date" class="mr-2">Sampai Tanggal </label>
+                                            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ request('end_date') }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Tampilkan</button>
                                     </form>
@@ -113,11 +101,8 @@
                                 <br>
                                 <h6>Total Penjualan: Rp. {{ number_format($total_penjualan, 0, ',', '.') }}</h6>
                                 <br>
-                                <a href="{{ route(
-                                    'orders.printPDF', ['month' => request('month'), 'year' => request('year')]
-                                    ) }}"
-                                    class="btn btn-primary">Cetak PDF
-                                </a>
+                                <a href="{{ route('orders.printPDF', ['start_date' => request('start_date'), 'end_date' => request('end_date')]) }}" class="btn btn-primary">Cetak PDF</a>
+
                                 <div class="float-right">
                                     {{$orders->withQueryString()->links()}}
                                 </div>

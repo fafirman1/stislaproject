@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\order;
+use App\Models\Order;
 use App\Models\OrderItem;
 use Dompdf\Dompdf;
-use Dompdf\Options;
 use Illuminate\Support\Facades\View;
 
 class OrderController extends Controller
@@ -14,11 +13,10 @@ class OrderController extends Controller
     // index
     public function index(Request $request)
     {
-        $query = order::with('kasir')->orderBy('created_at', 'desc');
+        $query = Order::with('kasir')->orderBy('created_at', 'desc');
 
-        if ($request->has('month') && $request->has('year')) {
-            $query->whereMonth('transaction_time', $request->month)
-                  ->whereYear('transaction_time', $request->year);
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $query->whereBetween('transaction_time', [$request->start_date, $request->end_date]);
         }
 
         $orders = $query->paginate(200);
@@ -28,19 +26,19 @@ class OrderController extends Controller
     // view
     public function show($id)
     {
-        $order = order::with('kasir')->findOrFail($id);
+        $order = Order::with('kasir')->findOrFail($id);
         // get order items by order id
         $orderItems = OrderItem::with('product')->where('order_id', $id)->get();
         return view('pages.orders.view', compact('order', 'orderItems'));
     }
+
     // Method untuk mencetak PDF
     public function printPDF(Request $request)
     {
-        $query = order::with('kasir')->orderBy('created_at', 'desc');
+        $query = Order::with('kasir')->orderBy('created_at', 'desc');
 
-        if ($request->has('month') && $request->has('year')) {
-            $query->whereMonth('transaction_time', $request->month)
-                  ->whereYear('transaction_time', $request->year);
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $query->whereBetween('transaction_time', [$request->start_date, $request->end_date]);
         }
 
         $orders = $query->get();

@@ -4,21 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Penjualan</title>
-    <!-- Tambahkan style CSS jika diperlukan -->
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 5px 0;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #4CAF50;
+            color: white;
         }
 
         tr:nth-child(even) {
@@ -28,9 +49,20 @@
         tfoot {
             font-weight: bold;
         }
+
+        .total {
+            text-align: right;
+            padding-right: 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Moko Wardah Parfum</h1>
+        <p>Jl. Jenderal Sudirman, Kalirejo. Kec. Kalirejo Lampung Tengah</p>
+        <p>Telepon: 0821 9826 9826</p>
+    </div>
+
     <h2>Data Penjualan</h2>
     <table>
         <thead>
@@ -65,7 +97,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" style="text-align: right;">Total Penjualan:</td>
+                <td colspan="3" class="total">Total Penjualan:</td>
                 <td>Rp. {{ number_format($total_penjualan, 0, ',', '.') }}</td>
             </tr>
         </tfoot>
