@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Order;
+use App\Models\order;
 use App\Models\OrderItem;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
@@ -13,7 +13,7 @@ class OrderController extends Controller
     // index
     public function index(Request $request)
     {
-        $query = Order::with('kasir')->orderBy('created_at', 'desc');
+        $query = order::with('kasir')->orderBy('created_at', 'desc');
 
         if ($request->filled('start_date') && $request->filled('end_date')) {
             $query->whereBetween('transaction_time', [$request->start_date, $request->end_date]);
@@ -26,7 +26,7 @@ class OrderController extends Controller
     // view
     public function show($id)
     {
-        $order = Order::with('kasir')->findOrFail($id);
+        $order = order::with('kasir')->findOrFail($id);
         // get order items by order id
         $orderItems = OrderItem::with('product')->where('order_id', $id)->get();
         return view('pages.orders.view', compact('order', 'orderItems'));
@@ -35,7 +35,7 @@ class OrderController extends Controller
     // Method untuk mencetak PDF
     public function printPDF(Request $request)
     {
-        $query = Order::with('kasir')->orderBy('created_at', 'desc');
+        $query = order::with('kasir')->orderBy('created_at', 'desc');
 
         if ($request->filled('start_date') && $request->filled('end_date')) {
             $query->whereBetween('transaction_time', [$request->start_date, $request->end_date]);
