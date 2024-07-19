@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('user', UserController::class);
     Route::resource('product', \App\Http\Controllers\ProductController::class);
     Route::resource('order', OrderController::class);
-    Route::get('/penjualan', [OrderController::class, 'index'])->name('penjualan.index');
+    Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     Route::get('/orders/print-pdf', [OrderController::class, 'printPDF'])->name('orders.printPDF');
     Route::get('home', [AdminController::class, 'index'])->name('home');
 });

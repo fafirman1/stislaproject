@@ -44,7 +44,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="float-left">
-                                    <form method="GET" action="{{ route('penjualan.index') }}" class="form-inline">
+                                    <form method="GET" action="{{ route('order.index') }}" class="form-inline">
                                         <div class="form-group mr-2">
                                             <label for="start_date" class="mr-2">Mulai Tanggal </label>
                                             <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
